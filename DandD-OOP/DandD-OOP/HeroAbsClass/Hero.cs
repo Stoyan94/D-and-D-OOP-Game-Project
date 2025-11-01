@@ -1,20 +1,24 @@
 ﻿namespace DandD_OOP.HeroAbsClass
 {
-    public class Hero
+    public abstract class Hero
     {
         private const sbyte MinNameLength = 2;
         private const sbyte MaxNameLength = 10;
 
-        private const sbyte minLevel = 1;
-        protected virtual sbyte maxLevel => 100;
+        private const ushort MinPower = 1000;
+        private const ushort MaxPower = 50000;
+
+        private const sbyte MinLevel = 1;
+        protected virtual sbyte MaxLevel => 100;
 
         private string name;
         private sbyte level = 1;
 
-        public Hero(string name, sbyte level)
+        protected Hero(string name, sbyte level, ushort power)
         {
             Name = name;
             Level = level;
+            Power = power;
         }
 
         public string Name
@@ -41,17 +45,37 @@
             get => level;
             set
             {
-                if (value < minLevel)
+                if (value < MinLevel)
                 {
-                    throw new ArgumentException(string.Format(HeroErrorMessages.LevelBelowMinimumMessage, minLevel));
+                    throw new ArgumentException(string.Format(HeroErrorMessages.LevelBelowMinimumMessage, MinLevel));
                 }
 
-                if (value > maxLevel)
+                if (value > MaxLevel)
                 {
-                    throw new ArgumentException(string.Format(HeroErrorMessages.LevelExceedMessage, maxLevel));
+                    throw new ArgumentException(string.Format(HeroErrorMessages.LevelExceedMessage, MaxLevel));
                 }
 
                 level = value;
+            }
+        }
+
+
+        public ushort Power
+        {
+            get => Power;
+            set
+            {
+                if (value < MinPower)
+                {
+                    throw new ArgumentException(string.Format(HeroErrorMessages.PowerBelowMinimumMessage, MinPower));
+                }
+
+                if (value > MaxPower)
+                {
+                    throw new ArgumentException(string.Format(HeroErrorMessages.PowerExceedMaximumMessage, MaxPower));
+                }
+
+                Power = value;
             }
         }
 
