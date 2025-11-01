@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="HeroesClasses\" />
+    <Folder Include="Heroes\Knight\" />
+    <Folder Include="Heroes\Wizard\" />
   </ItemGroup>
 
 </Project>
