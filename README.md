@@ -1,2 +1,2 @@
-# D-D-OOP-Game-Project
+# D&D-OOP-Game-Project
 Learning Encapsulation, Abstraction, Polymorphism and SOLID principles
