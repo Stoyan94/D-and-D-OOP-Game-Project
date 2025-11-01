@@ -26,6 +26,12 @@
                 {
                     throw new ArgumentException(string.Format(HeroErrorMessages.InvalidNameMessage, MinNameLength));
                 }
+
+                if (value.Length > MaxNameLength)
+                {
+                    throw new ArgumentException(string.Format(HeroErrorMessages.NameTooLongMessage, MaxNameLength));
+                }
+
                 name = value;
             }
         }
