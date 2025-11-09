@@ -9,22 +9,24 @@
         private const ushort MaxPower = 50000;
 
         private const sbyte MinLevel = 1;
-        protected virtual sbyte MaxLevel => 100;
+        private const sbyte MaxLevel = 100;
 
         private string name;
         private sbyte level = 1;
+        private double experience = 0;
 
-        protected Hero(string name, sbyte level, ushort power)
+        protected Hero(string name, sbyte level, ushort power, double experience)
         {
             Name = name;
             Level = level;
             Power = power;
+            Experience = experience;
         }
 
         public string Name
         {
             get => name;
-            set
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < MinNameLength)
                 {
@@ -43,7 +45,7 @@
         public sbyte Level
         {
             get => level;
-            set
+            private set
             {
                 if (value < MinLevel)
                 {
@@ -63,7 +65,7 @@
         public ushort Power
         {
             get => Power;
-            set
+            private set
             {
                 if (value < MinPower)
                 {
@@ -78,6 +80,8 @@
                 Power = value;
             }
         }
+
+        public double Experience { get; set; }
 
     }
 }
