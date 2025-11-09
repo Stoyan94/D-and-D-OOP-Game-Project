@@ -1,4 +1,4 @@
-﻿namespace DandD_OOP
+﻿namespace DandD_OOP.Utilities
 {
     static class HeroErrorMessages
     {

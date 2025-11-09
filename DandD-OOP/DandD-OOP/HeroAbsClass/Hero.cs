@@ -1,4 +1,6 @@
-﻿namespace DandD_OOP.HeroAbsClass
+﻿using DandD_OOP.Utilities;
+
+namespace DandD_OOP.HeroAbsClass
 {
     public abstract class Hero
     {
@@ -10,6 +12,10 @@
 
         private const sbyte MinLevel = 1;
         private const sbyte MaxLevel = 100;
+
+        private const double MinExperience = 0;
+        private const double MaxExperiencePerGain = 10000;
+        private const double MaxExperience = 1000000;
 
         private string name;
         private sbyte level = 1;
@@ -82,6 +88,36 @@
         }
 
         public double Experience { get; set; }
+
+
+        protected virtual void CheckLevelUp()
+        {
+            while (Experience >= GetExperienceForNextLevel())
+            {
+                Experience -= GetExperienceForNextLevel();
+                Level++;
+            }
+        }
+
+        protected virtual int GetExperienceForNextLevel()
+        {
+            // Връща нужния опит за текущото ниво
+            return ExperienceConfig.ExperienceTable.TryGetValue(Level, out int exp) ? exp : Level * 100;
+        }
+
+
+        protected void GainExperience(int amount)
+        {
+            if (amount < 0)
+                throw new ArgumentException("Experience gain cannot be negative.");
+
+            // Ограничаваме максималния опит за едно добавяне
+            Experience += Math.Min(amount, MaxExperiencePerGain);
+
+            CheckLevelUp();
+        }
+
+
 
     }
 }
